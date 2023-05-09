@@ -14,3 +14,4 @@ router.get('/get', async (ctx) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(3000);
+
