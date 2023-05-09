@@ -8,7 +8,7 @@ router.prefix('/api')
 
 
 router.get('/get', async (ctx) => {
-  ctx.body = "返回响应数据";
+  ctx.body = "汤睿，我喜欢你";
 })
 
 app.use(router.routes()).use(router.allowedMethods());
