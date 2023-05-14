@@ -13,7 +13,7 @@ router.get('/get', async (ctx) => {
 
 router.get('/user/getInfo', async (ctx) => {
   const WeChatName = ctx.query.name
-  const res = await db.query(`SELECT * FROM user WHERE WeChatName = ${WeChatName};`)
+  const res = await db.query(`SELECT * FROM user WHERE WeChatName = '${WeChatName}';`)
   ctx.body = res
 })
 
