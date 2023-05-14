@@ -30,7 +30,7 @@ exports.query = (sql, values) => {
               results
             })
             connection.release()
-            resolve(rows)
+            resolve(results)
           }
           connection.release() // 释放连接池
         })
