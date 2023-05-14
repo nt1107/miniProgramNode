@@ -29,7 +29,6 @@ exports.query = (sql, values) => {
               code: 200,
               results
             })
-            connection.release()
             resolve(results)
           }
           connection.release() // 释放连接池
