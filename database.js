@@ -5,7 +5,7 @@ const pool = mysql.createPool({
   user: 'root',
   password: 'mysqlU+',
   database: 'miniProgram',
-  socketPath: '/var/run/mysqld/mysqld.sock'
+  // socketPath: '/var/run/mysqld/mysqld.sock'
 })
 
 exports.query = (sql, values) => {
