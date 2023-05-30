@@ -36,6 +36,7 @@ router.get('/get', async (ctx) => {
 
 router.get('/user/getOpenId', async (ctx) => {
   let code = ctx.query.code
+  console.log(111, code)
   https.request(`https://api.weixin.qq.com/sns/jscode2session?appid=wxc0487101e293089a&secret=68083c27a664776591b54d9010fd1499&js_code=${code}&grant_type=authorization_code`, (res) => {
     ctx.body = res
   })
