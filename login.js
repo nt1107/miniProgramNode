@@ -20,8 +20,8 @@ module.exports = () => {
         resolve()
       })
       request.end()
-    }).then((openid) => {
-      searchUser(openid).then((res) => {
+    }).then(async (openid) => {
+      await searchUser(openid).then((res) => {
         if (res.length) {
           ctx.body = JSON.parse(res[0])
         } else {
