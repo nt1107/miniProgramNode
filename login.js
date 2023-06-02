@@ -22,6 +22,7 @@ module.exports = () => {
       request.end()
     }).then(async (openid) => {
       await searchUser(openid).then((res) => {
+        console.log(222, res)
         if (res.length) {
           ctx.body = JSON.parse(res[0])
         } else {
@@ -36,6 +37,7 @@ module.exports = () => {
       const res = await db.query(
         `SELECT * FROM user WHERE openID = '${openId}';`
       )
+      console.log(111, res)
       resolve(res)
     })
   }
