@@ -10,7 +10,7 @@ module.exports = () => {
         `https://api.weixin.qq.com/sns/jscode2session?appid=wxc0487101e293089a&secret=68083c27a664776591b54d9010fd1499&js_code=${code}&grant_type=authorization_code`,
         (response) => {
           response.on('data', (data) => {
-            resData = data.toString()
+            resData = JSON.parse(data.toString())
             console.log('000', resData)
             resolve(resData.openid)
           })
