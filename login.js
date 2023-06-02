@@ -11,6 +11,7 @@ module.exports = () => {
         (response) => {
           response.on('data', (data) => {
             resData = data.toString()
+            console.log('000', resData)
             resolve(resData.openid)
           })
         }
