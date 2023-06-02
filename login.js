@@ -40,7 +40,7 @@ module.exports = () => {
         `SELECT * FROM user WHERE openID = '${openId}';`
       )
       console.log(111, res)
-      resolve(res)
+      resolve(res.results)
     })
   }
   // 获取用户信息
