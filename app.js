@@ -36,20 +36,23 @@ router.get('/get', async (ctx) => {
 
 router.get('/user/getOpenId', async (ctx) => {
   let code = ctx.query.code
-  const request = https.request(`https://api.weixin.qq.com/sns/jscode2session?appid=wxc0487101e293089a&secret=68083c27a664776591b54d9010fd1499&js_code=${code}&grant_type=authorization_code`, (response) => {
-    response.on('data', (data) => {
-      let resData = data.toString()
-      console.log(1111, JSON.parse(resData))
-        ctx.body = 111
-    });
-    }) 
-  
-    request.on('error', (error) => { 
-      console.log('An error', error); 
-    })
-    request.end()
-    ctx.body = 222
-})
+  new Promise((resolve, reject) => {
+    const request = https.request(`https://api.weixin.qq.com/sns/jscode2session?appid=wxc0487101e293089a&secret=68083c27a664776591b54d9010fd1499&js_code=${code}&grant_type=authorization_code`, (response) => {
+      response.on('data', (data) => {
+        let resData = data.toString()
+        console.log(1111, JSON.parse(resData))
+        resolve()
+      });
+      })
+      request.on('error', (error) => { 
+        console.log('An error', error);
+        resolve()
+      })
+      request.end()
+  }).then((res) => {
+    ctx.body = 111
+  })
+  })
 
 router.get('/user/getInfo', async (ctx) => {
   const WeChatName = ctx.query.name
