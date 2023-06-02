@@ -26,7 +26,7 @@ module.exports = () => {
       await searchUser(openid).then((res) => {
         console.log(222, res)
         if (res.length) {
-          ctx.body = JSON.parse(res[0])
+          ctx.body = res[0]
         } else {
           ctx.body = '新用户'
         }
