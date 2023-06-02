@@ -36,11 +36,11 @@ router.get('/get', async (ctx) => {
 
 router.get('/user/getOpenId', async (ctx) => {
   let code = ctx.query.code
+  let resData
   await new Promise((resolve, reject) => {
     const request = https.request(`https://api.weixin.qq.com/sns/jscode2session?appid=wxc0487101e293089a&secret=68083c27a664776591b54d9010fd1499&js_code=${code}&grant_type=authorization_code`, (response) => {
       response.on('data', (data) => {
-        let resData = data.toString()
-        console.log(1111, JSON.parse(resData))
+        resData = data.toString()
         resolve()
       });
       })
@@ -50,7 +50,7 @@ router.get('/user/getOpenId', async (ctx) => {
       })
       request.end()
   }).then((res) => {
-    ctx.body = 111
+    ctx.body = JSON.parse(resData)
   })
   })
 
