@@ -21,6 +21,7 @@ module.exports = () => {
       })
       request.end()
     }).then(async (openid) => {
+      console.log(1000, openid)
       await searchUser(openid).then((res) => {
         console.log(222, res)
         if (res.length) {
