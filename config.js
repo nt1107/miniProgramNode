@@ -2,6 +2,7 @@ const fs = require('fs')
 const Koa = require('koa')
 var Router = require('koa-router')
 const db = require('./database')
+const bodyParser = require('koa-bodyparser')
 
 const https = require('https')
 const sslify = require('koa-sslify').default
@@ -14,6 +15,7 @@ const options = {
 const app = new Koa()
 
 app.use(sslify())
+app.use(bodyParser())
 
 https.createServer(options, app.callback()).listen(3000, (err) => {
   if (err) {
