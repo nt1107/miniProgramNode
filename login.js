@@ -61,9 +61,9 @@ module.exports = () => {
   router.post('/user/setInfo', async (ctx) => {
     console.log(111, ctx.request)
     const { name, openid } = ctx.request
-    const res = await db.query(
-      `INSET INTO user (WeChatName, openid) values(${name}, ${openid});`
-    )
+    // const res = await db.query(
+    //   `INSET INTO user (WeChatName, openid) values(${name}, ${openid});`
+    // )
     ctx.body = {
       status: 200,
       messgage: 'success',
