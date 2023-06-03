@@ -59,6 +59,7 @@ module.exports = () => {
 
   // 传入用户信息
   router.post('/user/setInfo', async (ctx) => {
+    console.log(111, ctx)
     const { name, openid } = ctx.request.body
     const res = await db.query(
       `INSET INTO user (WeChatName, openid) values(${name}, ${openid});`
