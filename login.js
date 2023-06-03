@@ -6,6 +6,7 @@ module.exports = () => {
     let code = ctx.query.code
     let resData
     await new Promise((resolve, reject) => {
+      console.log(111, code)
       const request = https.request(
         `https://api.weixin.qq.com/sns/jscode2session?appid=wxc0487101e293089a&secret=68083c27a664776591b54d9010fd1499&js_code=${code}&grant_type=authorization_code`,
         (response) => {
@@ -21,6 +22,7 @@ module.exports = () => {
       request.end()
     }).then(async (openid) => {
       await searchUser(openid).then((res) => {
+        console.log(222, res)
         if (res.length) {
           ctx.body = {
             message: '老用户',
