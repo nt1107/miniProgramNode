@@ -15,7 +15,6 @@ const options = {
 const app = new Koa()
 
 app.use(sslify())
-app.use(bodyParser())
 
 https.createServer(options, app.callback()).listen(3000, (err) => {
   if (err) {
@@ -28,7 +27,7 @@ https.createServer(options, app.callback()).listen(3000, (err) => {
 var router = new Router()
 
 router.prefix('/api')
-
+app.use(bodyParser())
 app.use(router.routes()).use(router.allowedMethods())
 
 module.exports = {
