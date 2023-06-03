@@ -11,38 +11,41 @@ module.exports = () => {
         (response) => {
           response.on('data', (data) => {
             resData = JSON.parse(data.toString())
-            console.log('000', resData)
             resolve(resData.openid)
           })
         }
       )
       request.on('error', (error) => {
-        console.log('An error', error)
         resolve()
       })
       request.end()
     }).then(async (openid) => {
-      console.log(1000, openid)
       await searchUser(openid).then((res) => {
-        console.log(222, res)
         if (res.length) {
-          ctx.body = res[0]
+          ctx.body = {
+            message: '老用户',
+            userInfo: res[0]
+          }
         } else {
-          ctx.body = '新用户'
+          ctx.body = {
+            message: '新用户',
+            userInfo: { openid }
+          }
         }
       })
     })
   })
+
   // 查找用户信息
   const searchUser = (openId) => {
     return new Promise(async (resolve, reject) => {
       const res = await db.query(
-        `SELECT * FROM user WHERE openID = '${openId}';`
+        `SELECT * FROM user WHERE openid = '${openId}';`
       )
-      console.log(111, res)
       resolve(res.results)
     })
   }
+
   // 获取用户信息
   router.get('/user/getInfo', async (ctx) => {
     const WeChatName = ctx.query.name
@@ -51,10 +54,11 @@ module.exports = () => {
     )
     ctx.body = res
   })
+
   // 传入用户信息
   router.post('/user/setInfo', async (ctx) => {
     const res = await db.query(
-      `INSET INTO user (WeChatName, openID) values(${ctx.name.WeChatName}, ${ctx.name.openid});`
+      `INSET INTO user (WeChatName, openid) values(${ctx.name.WeChatName}, ${ctx.name.openid});`
     )
     ctx.body = {
       status: 200,
