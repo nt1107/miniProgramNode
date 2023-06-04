@@ -8,9 +8,9 @@ module.exports = () => {
   })
   // 插入一条菜单
   router.post('/menu/setMenu', async (ctx) => {
-    const { name, link } = ctx.request.body
+    const { name, link, addBy } = ctx.request.body
     const res = await db.query(
-      `INSERT INTO menu (name, links) values('${name}', '${link}');`
+      `INSERT INTO menu (name, links, addBy) values('${name}', '${link}', '${addBy}');`
     )
     ctx.body = {
       status: 200,
