@@ -29,8 +29,8 @@ var router = new Router()
 
 router.prefix('/api')
 app.use(bodyParser())
-app.use(router.routes()).use(router.allowedMethods())
 app.use(cors())
+app.use(router.routes()).use(router.allowedMethods())
 
 module.exports = {
   https,
