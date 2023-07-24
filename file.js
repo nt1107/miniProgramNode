@@ -14,7 +14,10 @@ module.exports = () => {
     ctx.type = 'video/mp4'
     ctx.set('Accept-Ranges', 'bytes')
     ctx.status = 206
-    const stream = fs.createReadStream(videoFilePath, { start, end })
+    const stream = fs.createReadStream(path.join(__dirname, 'background.mp4'), {
+      start,
+      end
+    })
     ctx.body = stream
   })
 }
