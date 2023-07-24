@@ -8,6 +8,7 @@ module.exports = () => {
     const res = await db.query(`SELECT * FROM menu;`)
     const video = fs.readFileSync(path.join(__dirname, 'background.mp4'))
     ctx.type = 'video/mp4'
+    ctx.set('Accept-Ranges', 'bytes')
     ctx.body = video
   })
 }
