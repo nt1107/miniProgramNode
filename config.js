@@ -3,6 +3,7 @@ const Koa = require('koa')
 var Router = require('koa-router')
 const db = require('./database')
 const bodyParser = require('koa-bodyparser')
+const cors = require('koa2-cors')
 
 const https = require('https')
 const sslify = require('koa-sslify').default
@@ -29,6 +30,7 @@ var router = new Router()
 router.prefix('/api')
 app.use(bodyParser())
 app.use(router.routes()).use(router.allowedMethods())
+app.use(cors())
 
 module.exports = {
   https,
