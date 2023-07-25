@@ -20,4 +20,9 @@ module.exports = () => {
     })
     ctx.body = stream
   })
+  router.get('/backgroundVideoNormal', async (ctx) => {
+    const video = fs.readFileSync(path.join(__dirname, 'background.mp4'))
+    ctx.type = 'video/mp4'
+    ctx.body = video
+  })
 }
