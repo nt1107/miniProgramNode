@@ -4,7 +4,7 @@ const path = require('path')
 
 module.exports = () => {
   // 获取菜单列表
-  router.get('/backgroundVideo', async (ctx) => {
+  router.get('/bk', async (ctx) => {
     const stat = fs.statSync(path.join(__dirname, 'background.mp4'))
     const range = ctx.req.headers.range
     const parts = range.replace(/bytes=/, '').split('-')
@@ -20,7 +20,7 @@ module.exports = () => {
     })
     ctx.body = stream
   })
-  router.get('/backgroundVideoNormal', async (ctx) => {
+  router.get('/bkNormal', async (ctx) => {
     const video = fs.readFileSync(path.join(__dirname, 'background.mp4'))
     ctx.type = 'video/mp4'
     ctx.body = video
