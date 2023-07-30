@@ -29,7 +29,7 @@ module.exports = () => {
 
   router.get('/image', async (ctx) => {
     console.log(111)
-    const image = path.join(__dirname, 'loginBk.jpg')
+    const image = fs.readFileSync(path.join(__dirname, 'loginBk.jpg'))
     ctx.type = 'image/jpeg'
     ctx.body = image
   })
