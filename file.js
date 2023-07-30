@@ -1,6 +1,7 @@
 const { https, router, db, app } = require('./config.js')
 const fs = require('fs')
 const path = require('path')
+const send = require('koa-send')
 
 module.exports = () => {
   // 获取菜单列表
