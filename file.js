@@ -29,6 +29,7 @@ module.exports = () => {
   })
 
   router.get('/image', async (ctx) => {
+    console.log(111)
     await send(ctx, path.join(__dirname, 'loginBk.jpg'))
   })
 }
