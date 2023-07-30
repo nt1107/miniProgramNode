@@ -20,9 +20,14 @@ module.exports = () => {
     })
     ctx.body = stream
   })
+
   router.get('/backgroundVideoNormal', async (ctx) => {
     const video = fs.readFileSync(path.join(__dirname, 'bk.mp4'))
     ctx.type = 'video/mp4'
     ctx.body = video
+  })
+
+  router.get('imgae', async (ctx) => {
+    await send(ctx, path.join(__dirname, 'loginBk.jpg'))
   })
 }
