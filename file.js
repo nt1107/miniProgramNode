@@ -27,7 +27,7 @@ module.exports = () => {
     ctx.body = video
   })
 
-  router.get('imgae', async (ctx) => {
+  router.get('/image', async (ctx) => {
     await send(ctx, path.join(__dirname, 'loginBk.jpg'))
   })
 }
