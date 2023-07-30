@@ -1,7 +1,7 @@
 const { https, router, db, app } = require('./config.js')
 const fs = require('fs')
 const path = require('path')
-const send = require('koa-send')
+const serve = require('koa-static')
 
 module.exports = () => {
   // 获取菜单列表
@@ -30,6 +30,6 @@ module.exports = () => {
 
   router.get('/image', async (ctx) => {
     console.log(111)
-    await send(ctx, path.join(__dirname, 'loginBk.jpg'))
+    await serve(path.join(__dirname, 'loginBk.jpg'))
   })
 }
