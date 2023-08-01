@@ -22,15 +22,18 @@ module.exports = () => {
   })
 
   router.get('/backgroundVideoNormal', async (ctx) => {
+    console.log('normal get')
     const video = fs.readFileSync(path.join(__dirname, 'bk.mp4'))
     ctx.type = 'video/mp4'
     ctx.body = video
+    console.log('normal send')
   })
 
   router.get('/image', async (ctx) => {
-    console.log(111)
+    console.log('img get')
     const image = fs.readFileSync(path.join(__dirname, 'loginBk.jpg'))
     ctx.type = 'image/jpeg'
     ctx.body = image
+    console.log('img send')
   })
 }
