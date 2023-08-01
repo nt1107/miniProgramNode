@@ -31,9 +31,35 @@ module.exports = () => {
 
   router.get('/image', async (ctx) => {
     console.log('img get')
-    const image = fs.readFileSync(path.join(__dirname, 'loginBk.jpg'))
-    ctx.type = 'image/jpeg'
+    const image = fs.readFileSync(path.join(__dirname, 'loginBk.png'))
+    ctx.type = 'image/png'
     ctx.body = image
     console.log('img send')
   })
 }
+
+router.get('/imageRange', async (ctx) => {
+  const stat = fs.statSync(filePath)
+  const fileSize = stat.size
+  ctx.set('Content-Type', 'image/jpeg')
+  ctx.set('Accept-Ranges', 'bytes')
+
+  const rangeHeader = ctx.header.range
+  if (rangeHeader) {
+    const parts = rangeHeader.replace(/bytes=/, '').split('-')
+    const start = parseInt(parts[0], 10)
+    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1
+    const chunkSize = end - start + 1
+    ctx.status = 206
+
+    ctx.set('Content-Range', `bytes ${start}-${end}/${fileSize}`)
+    ctx.set('Content-Length', chunkSize)
+
+    const fileStream = fs.createReadStream(filePath, { start, end })
+
+    ctx.body = fileStream
+  } else {
+    ctx.set('Content-Length', fileSize)
+    ctx.body = fs.createReadStream(filePath)
+  }
+})
