@@ -39,9 +39,10 @@ module.exports = () => {
 }
 
 router.get('/imageRange', async (ctx) => {
+  const filePath = path.join(__dirname, 'loginBk.png')
   const stat = fs.statSync(filePath)
   const fileSize = stat.size
-  ctx.set('Content-Type', 'image/jpeg')
+  ctx.set('Content-Type', 'image/png')
   ctx.set('Accept-Ranges', 'bytes')
 
   const rangeHeader = ctx.header.range
