@@ -5,7 +5,7 @@ const path = require('path')
 module.exports = () => {
   // 获取菜单列表
   router.get('/backgroundVideo', async (ctx) => {
-    const stat = fs.statSync(path.join(__dirname, 'bk.mp4'))
+    const stat = fs.statSync(path.join(__dirname, 'fmp4.mp4'))
     const range = ctx.req.headers.range
     const parts = range.replace(/bytes=/, '').split('-')
     const start = Number(parts[0])
@@ -14,7 +14,7 @@ module.exports = () => {
     ctx.type = 'video/mp4'
     ctx.set('Accept-Ranges', 'bytes')
     ctx.status = 206
-    const stream = fs.createReadStream(path.join(__dirname, 'bk.mp4'), {
+    const stream = fs.createReadStream(path.join(__dirname, 'fmp4.mp4'), {
       start,
       end
     })
@@ -22,7 +22,7 @@ module.exports = () => {
   })
 
   router.get('/bigVideo', async (ctx) => {
-    const stat = fs.statSync(path.join(__dirname, 'lawbg.mp4'))
+    const stat = fs.statSync(path.join(__dirname, 'fmp4.mp4'))
     const range = ctx.req.headers.range
     const parts = range.replace(/bytes=/, '').split('-')
     const start = Number(parts[0])
@@ -31,7 +31,7 @@ module.exports = () => {
     ctx.type = 'video/mp4'
     ctx.set('Accept-Ranges', 'bytes')
     ctx.status = 206
-    const stream = fs.createReadStream(path.join(__dirname, 'lawbg.mp4'), {
+    const stream = fs.createReadStream(path.join(__dirname, 'fmp4.mp4'), {
       start,
       end
     })
@@ -40,7 +40,7 @@ module.exports = () => {
 
   router.get('/backgroundVideoNormal', async (ctx) => {
     console.log('normal get')
-    const video = fs.readFileSync(path.join(__dirname, 'bk.mp4'))
+    const video = fs.readFileSync(path.join(__dirname, 'fmp4.mp4'))
     ctx.type = 'video/mp4'
     ctx.body = video
     console.log('normal send')
